@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    "git-tag",
+    "all-contributors",
+    "first-time-contributor",
+    "released"
+  ],
+  "owner": "chivalryq",
+  "repo": "test-auto-release",
+  "name": "chivalryq",
+  "email": "chivalry.pp@gmail.com",
+  "onlyPublishWithReleaseLabel": true
+}
