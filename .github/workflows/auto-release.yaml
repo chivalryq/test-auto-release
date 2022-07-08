@@ -15,8 +15,8 @@ jobs:
       - name: auto release
         run: |
           git fetch origin
-          git fetch --tags --always
-          git describe --tags --abbrev=0
+          git fetch --tags 
+          git describe --tags --abbrev=0 --always
           # Download a platform specific version of auto
           curl -kL -o - https://github.com/intuit/auto/releases/download/v10.28.0/auto-linux.gz | gunzip > ~/auto
           # Make auto executable
