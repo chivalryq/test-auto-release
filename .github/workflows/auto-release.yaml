@@ -17,10 +17,7 @@ jobs:
 
       - name: Download auto
         run: |
-          #curl -vL -o - "$(curl -fsSL https://api.github.com/repos/intuit/auto/releases/latest | jq -r '.assets[] | select(.name == "auto-linux.gz") | .browser_download_url')" | gunzip > ~/auto
-          # Pin to 10.16.1 so we don't break if & when
-          # <https://github.com/intuit/auto/issues/1778> is fixed.
-          wget -O- https://github.com/intuit/auto/releases/download/v10.16.1/auto-linux.gz | gunzip > ~/auto
+          wget -O- https://github.com/intuit/auto/releases/download/v10.37.1/auto-linux.gz | gunzip > ~/auto
           chmod a+x ~/auto
       - name: Check whether a release is due
         id: auto-version
@@ -32,9 +29,4 @@ jobs:
       - name: auto release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # git fetch origin
-          # git fetch --tags 
-          # git describe --tags --abbrev=0 --always
-          # Download a platform specific version of auto
-          GH_TOKEN=${{secrets.GH_TOKEN}} ~/auto shipit -vv
+        run: ~/auto shipit -v
