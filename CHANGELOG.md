@@ -1,3 +1,15 @@
+# v0.3.0 (Mon Jul 11 2022)
+
+#### 🚀 Enhancement
+
+- bump 0.3.0 [#5](https://github.com/chivalryq/test-auto-release/pull/5) ([@chivalryq](https://github.com/chivalryq))
+
+#### Authors: 1
+
+- qiaozp ([@chivalryq](https://github.com/chivalryq))
+
+---
+
 # v0.2.0 (Mon Jul 11 2022)
 
 #### 🚀 Enhancement
