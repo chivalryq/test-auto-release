@@ -10,15 +10,31 @@ jobs:
   auto-release:
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout
+      - name: Checkout source
         uses: actions/checkout@v2
-      - name: auto release
+        with:
+          fetch-depth: 0
+
+      - name: Download auto
         run: |
-          git fetch origin
-          git fetch --tags 
+          #curl -vL -o - "$(curl -fsSL https://api.github.com/repos/intuit/auto/releases/latest | jq -r '.assets[] | select(.name == "auto-linux.gz") | .browser_download_url')" | gunzip > ~/auto
+          # Pin to 10.16.1 so we don't break if & when
+          # <https://github.com/intuit/auto/issues/1778> is fixed.
+          wget -O- https://github.com/intuit/auto/releases/download/v10.16.1/auto-linux.gz | gunzip > ~/auto
+          chmod a+x ~/auto
+      - name: Check whether a release is due
+        id: auto-version
+        run: |
+          version="$(~/auto version)"
+          echo "::set-output name=version::$version"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: auto release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # git fetch origin
+          # git fetch --tags 
           # git describe --tags --abbrev=0 --always
           # Download a platform specific version of auto
-          curl -kL -o - https://github.com/intuit/auto/releases/download/v10.28.0/auto-linux.gz | gunzip > ~/auto
-          # Make auto executable
-          chmod a+x ~/auto
           GH_TOKEN=${{secrets.GH_TOKEN}} ~/auto shipit -vv
