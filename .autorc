@@ -9,5 +9,45 @@
   "repo": "test-auto-release",
   "name": "chivalryq",
   "email": "chivalry.pp@gmail.com",
-  "onlyPublishWithReleaseLabel": true
+
+  "onlyPublishWithReleaseLabel": true,
+  "baseBranch": "main",
+  "versionBranches": "release-",
+  "prereleaseBranches": ["next"],
+
+  "shipit": {
+    "prerelease": true,
+    "message": "string",
+    "noChangelog": true,
+    "onlyGraduateWithReleaseLabel": true
+  },
+  "labels": [
+    {
+      "name": "major",
+      "changelogTitle": "💥 Major Version",
+      "description": "Increment the major version when merged",
+      "releaseType": "major",
+      "color": "#C5000B"
+    },
+    {
+      "name": "minor",
+      "changelogTitle": "🚀 Minor Version",
+      "description": "Increment the minor version when merged",
+      "releaseType": "minor",
+      "color": "#F1A60E"
+    },
+    {
+      "name": "patch",
+      "changelogTitle": "🐛 Patch Version",
+      "description": "Increment the patch version when merged",
+      "releaseType": "patch",
+      "color": "#870048"
+    },
+    {
+      "name": "skip-release",
+      "description": "Preserve the current version when merged",
+      "releaseType": "skip",
+      "color": "#bf5416"
+    }
+  ]
 }
