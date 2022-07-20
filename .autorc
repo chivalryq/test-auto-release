@@ -21,6 +21,7 @@
     "noChangelog": true,
     "onlyGraduateWithReleaseLabel": true
   },
+  "noDefaultLabels": true,
   "labels": [
     {
       "name": "major",
